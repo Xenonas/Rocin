@@ -43,9 +43,7 @@ var saveBtn = document.getElementById("saveBtn");
 saveBtn.ontouchend = function(event){
   var canvas = document.getElementById("drawing-area");
   var dataURL = canvas.toDataURL("image/png");
-  // var newTab = window.open('about:blank','image from canvas');
   printDraw(dataURL)
-  // newTab.document.write("<img src='" + dataURL + "' alt='from canvas' />");
   clearCanvas();
   modal.style.display = "none";
 }
@@ -176,3 +174,8 @@ const getOffsetTop = element => {
   return offsetTop;
 }
 
+var final = document.getElementById('final');
+
+final.ontouchend = function (){
+  console.log('saved')
+}

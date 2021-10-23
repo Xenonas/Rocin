@@ -172,3 +172,22 @@ header{
 #drawDrag{
   position: absolute;
 }
+
+#final{
+  font-size: small;
+  position: absolute;
+  top: 7%;
+  right: 1%;
+  background-color: red;
+  margin: 6px;
+  padding: 3px;
+  border: 1px solid black;
+  color: white;
+  transition-duration: 0.3ms;
+}
+
+#final:active{
+  background-color: white;
+  color: black;
+}
+

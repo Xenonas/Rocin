@@ -10,6 +10,7 @@
 <body id="body">
     <header>
        Rocin Rails
+       <span id="final">Finalize</span>
     </header>
     <div id="modal">
         <!-- The Modal -->

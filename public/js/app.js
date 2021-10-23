@@ -2131,10 +2131,8 @@ var saveBtn = document.getElementById("saveBtn");
 
 saveBtn.ontouchend = function (event) {
   var canvas = document.getElementById("drawing-area");
-  var dataURL = canvas.toDataURL("image/png"); // var newTab = window.open('about:blank','image from canvas');
-
-  printDraw(dataURL); // newTab.document.write("<img src='" + dataURL + "' alt='from canvas' />");
-
+  var dataURL = canvas.toDataURL("image/png");
+  printDraw(dataURL);
   clearCanvas();
   modal.style.display = "none";
 };
@@ -2255,6 +2253,12 @@ var getOffsetTop = function getOffsetTop(element) {
   }
 
   return offsetTop;
+};
+
+var _final = document.getElementById('final');
+
+_final.ontouchend = function () {
+  console.log('saved');
 };
 
 /***/ }),
