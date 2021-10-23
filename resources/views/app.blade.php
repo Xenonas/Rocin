@@ -7,36 +7,40 @@
     <link rel="stylesheet" href="/css/app.css">
     <title>Document</title>
 </head>
-<body>
+<body id="body">
     <header>
        Rocin Rails
     </header>
     <div id="modal">
         <!-- The Modal -->
         <div id="myModal" class="modal">
-        
+            
           <!-- Modal content -->
-          <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+          <div id="ihatemylife" class="modal-content">
+            {{-- <router-view></router-view> --}}
+            <div id="container" class="container">
+                <canvas id="drawing-area" class="drawing-area" height="500" width="500"></canvas>
+                <button id="clear-button" class="clear-button" type="button">Clear</button>
+            </div>
+            <button id="saveBtn">Save</button>
           </div>
         </div>
     </div>
+    <div id="draws">
 
+    </div>
     <div id="app">
-        <div id="response" v-text="test"></div>
         <div id="navigation-buttons">
             <button id="right-button"> > </button>
             <button id="left-button"> < </button>
         </div>
         <div id="add-buttons">
-            
-            <button id="plus-button"> T </button>
-            <button id="draw-button"> P </button>
+            <button id="plus-button"> + </button>
         </div>
-
+        
     </div> 
 
 <script src="/js/app.js"></script>
+
 </body>
 </html>

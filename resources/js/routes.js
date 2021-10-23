@@ -1,4 +1,4 @@
-// import DrawModal from './components/DrawModal';
+import Draw from './components/Draw';
 
 export default {
     mode: 'history',
@@ -6,6 +6,9 @@ export default {
     linkActiveClass: 'font-bold',
 
     routes: [
-        
+        {
+            path: '/',
+            component: Draw
+        },
     ]
 };
