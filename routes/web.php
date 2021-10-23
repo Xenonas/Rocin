@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/boards', function(){
+    return DB::select('SELECT * FROM "public.Boards";');
 });
+
+
+Route::get('/{any}', function () {
+    return view('app');
+})->where('any', '.*');
+
