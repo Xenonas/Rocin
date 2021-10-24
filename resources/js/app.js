@@ -54,6 +54,9 @@ let app = new Vue({
       console.log(imgs)
       console.log("okkokokok")
       for(var i = 0; i <imgs.length; i++){
+        imgs[i].className ="none";
+      }
+      for(var i = 0; i <imgs.length; i++){
         if (imgs[i].getAttribute('numid') > 0 ){
           if(imgs[i].style.top == ''){
             imgs[i].setAttribute('numid','-1')
