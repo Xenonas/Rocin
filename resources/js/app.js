@@ -54,18 +54,13 @@ let app = new Vue({
       console.log(imgs)
       console.log("okkokokok")
       for(var i = 0; i <imgs.length; i++){
-        imgs[i].className ="none";
-      }
-      for(var i = 0; i <imgs.length; i++){
         if (imgs[i].getAttribute('numid') > 0 ){
           if(imgs[i].style.top == ''){
             imgs[i].setAttribute('numid','-1')
-            imgs[i].className = "";
+            imgs[i].classList.remove('drawDrag');
             toSave.push([imgs[i].getAttribute('board_id'),imgs[i].src,0,0])
           }
           else{
-            imgs[i].setAttribute('numid','-1')
-            imgs[i].className = "";
             toSave.push([imgs[i].getAttribute('board_id'),imgs[i].src, imgs[i].style.top.slice(0, imgs[i].style.top.length-2), imgs[i].style.left.slice(0, imgs[i].style.left.length-2)])
           }
         }
