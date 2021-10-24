@@ -116,7 +116,7 @@ function printDraw(dataURL){
       draw.setAttribute('board_id',3)
     }
     else{
-      draw.setAttribute('board_id',3)
+      draw.setAttribute('board_id',2)
     }
 
     draw.setAttribute('numid',id);
