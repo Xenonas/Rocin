@@ -56,6 +56,7 @@ let app = new Vue({
       for(var i = 0; i <imgs.length; i++){
         if (imgs[i].getAttribute('numid') > 0 ){
           if(imgs[i].style.top == ''){
+            imgs[i].setAttribute('numid','-1')
             toSave.push([imgs[i].getAttribute('board_id'),imgs[i].src,0,0])
           }
           else{
