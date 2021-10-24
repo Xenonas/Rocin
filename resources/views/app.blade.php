@@ -10,38 +10,40 @@
 <body id="body" style="background: url('/wagon.png') center center / 100% 100% no-repeat fixed; z-index: 2;">
     <header>
        Rocin Rails
-       <span id="final">Finalize</span>
-       <span id="clearDraws">Clear</span>
     </header>
-    <div id="modal">
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-            
-          <!-- Modal content -->
-          <div id="ihatemylife" class="modal-content">
-            {{-- <router-view></router-view> --}}
-            <div id="container" class="container">
-                <canvas id="drawing-area" class="drawing-area" height="500" width="500"></canvas>
-                <span id="clear-button" class="clear-button" type="button">Clear</span>
-                <span id="saveBtn">Save</span>
+    <div id="app">
+        {{-- <div v-text="test" width="100px" height="100px" ></div> --}}
+            <span id="final" v-touch:start="finalise">Finalize</span>
+            <span id="clearDraws">Clear</span>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                
+            <!-- Modal content -->
+            <div id="ihatemylife" class="modal-content">
+                {{-- <router-view></router-view> --}}
+                <div id="container" class="container">
+                    <canvas id="drawing-area" class="drawing-area" height="500" width="500"></canvas>
+                    <span id="clear-button" class="clear-button" type="button">Clear</span>
+                    <span id="saveBtn">Save</span>
+                </div>
             </div>
             
-          </div>
-        </div>
-    </div>
-    <div id="draws">
+            </div>
+            <div id="draws">
 
+            </div>
+            <div>
+                <div id="navigation-buttons">
+                    <button id="right-button"> > </button>
+                    <button id="left-button"> < </button>
+                </div>
+                <div id="add-buttons">
+                    <button id="plus-button"> + </button>
+                </div>
+                
+            </div> 
     </div>
-    <div id="app">
-        <div id="navigation-buttons">
-            <button id="right-button"> > </button>
-            <button id="left-button"> < </button>
-        </div>
-        <div id="add-buttons">
-            <button id="plus-button"> + </button>
-        </div>
-        
-    </div> 
+    
 
 <script src="/js/app.js"></script>
 

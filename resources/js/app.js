@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Vue2TouchEvents from 'vue2-touch-events';
 import Draw from './components/Draw.vue';
 import routes from './routes';
 const axios = require('axios').default;
@@ -9,18 +10,66 @@ Vue.use(vmodal)
 Vue.use(VueRouter);
 
 
+Vue.use(Vue2TouchEvents)
+
 let app = new Vue({
-  el: '#myModal',
+  el: '#app',
 
   router: new VueRouter(routes),
   
   data:{
-      test: []
+      test: "response"
   },
-  mounted: function() {
-      axios.get('/boards')
+  mounted: async function(){
+      axios.get('/load')
+      .then(
+        (response) => this.test = response.data
+      ).then(await function(){
+        var board = document.getElementById('draws');
+        for(var i=0; i < app.test.length; i++){
+          console.log(app.test[i])
+            var draw = document.createElement('img');
+            draw.src = app.test[i].image;
+            draw.style.left =  app.test[i].posy.toString() + "px"
+            draw.style.top = app.test[i].posx.toString() + "px"
+            console.log(draw.style.top, app.test[i].posy);
+            // draw.className = 'drawDrag';
+            draw.style.position = 'absolute';
+            draw.width = 100;
+            draw.height = 100;
+            draw.setAttribute('board_id',app.test[i].board_id);
+            if (app.test[i].board_id != 1){
+              draw.style.display = 'none'
+            }
+            board.appendChild(draw);
+        }
+      })
+  },
+  methods: {
+    finalise(){
+      var toSave = []
+      var clearbtn = document.getElementById('clearDraws');
+      clearbtn.style.display = 'none';
+      var imgs = document.querySelectorAll('.drawDrag');
+      console.log(imgs)
+      console.log("okkokokok")
+      for(var i = 0; i <imgs.length; i++){
+        if (imgs[i].getAttribute('numid') > 0 ){
+          if(imgs[i].style.top == ''){
+            toSave.push([imgs[i].src,0,0])
+          }
+          else{
+            toSave.push([imgs[i].src, imgs[i].style.top.slice(0, imgs[i].style.top.length-2), imgs[i].style.left.slice(0, imgs[i].style.left.length-2)])
+          }
+        }
+      }
+      console.log(toSave)
+      axios.post('/save',{
+        toSave:toSave
+      })
       .then(response => this.test = response.data);
-  }
+    }
+  },
 });
 
 var modal = document.getElementById("myModal");
@@ -29,6 +78,8 @@ var btn = document.getElementById("plus-button");
 
 btn.ontouchend = function() {
   modal.style.display = "block";
+  var clearbtn = document.getElementById('clearDraws');
+      clearbtn.style.display = 'block';
 }
 
 window.ontouchend = function(event) {
@@ -179,45 +230,84 @@ const getOffsetTop = element => {
 
 var final = document.getElementById('final');
 var toSave = []
-final.ontouchstart = function (){
-  var imgs = document.querySelectorAll('.drawDrag');
-  console.log('saved')
+// final.ontouchstart = function (){
+//   var imgs = document.querySelectorAll('.drawDrag');
+//   console.log('saved')
   
-  for(var i = 0; i <imgs.length; i++){
-    if (imgs[i].getAttribute('numid') > 0 ){
-      toSave.push([imgs[i].src,imgs[i].style.top,imgs[i].style.left])
-    }
-  }
-  console.log(toSave)
-}
+//   for(var i = 0; i <imgs.length; i++){
+//     if (imgs[i].getAttribute('numid') > 0 ){
+//       toSave.push([imgs[i].src,imgs[i].style.top,imgs[i].style.left])
+//     }
+//   }
+//   console.log(toSave)
+// }
 
 var clearDraws = document.getElementById('clearDraws');
 
 clearDraws.ontouchstart = function(){
   var board = document.getElementById('draws');
-  board.innerHTML = '';
-  loadDraws(toSave)
+  var i = -1;
+  while(true){
+    i += 1;
+    if(i > board.childNodes.length - 1){
+      break;
+    }
+    if(board.childNodes[i].className == 'drawDrag'){
+      board.removeChild(board.childNodes[i])
+      i = i - 1;
+    }
+  }
+  // board.innerHTML = '';
+  // loadDraws(toSave)
 }
 
 function loadDraws(draws){
   var board = document.getElementById('draws');
-  for (var i = 0; i< draws.length; i++){
-    var draw = document.createElement('img');
-    draw.src = draws[i][0];
-    draw.style.left = draws[i][1]
-    draw.style.top = draws[i][2]
-    draw.className = 'drawDrag';
-    draw.width = 100;
-    draw.height = 100;
-    board.appendChild(draw);
+  for(var i=0; i < app.test.length; i++){
+    console.log(app.test[i].board_id)
+      var draw = document.createElement('img');
+      draw.src = app.test[i].image;
+      draw.style.left =  app.test[i].posy.toString() + "px"
+      draw.style.top = app.test[i].posx.toString() + "px"
+      draw.style.position = 'absolute';
+      // draw.className = 'drawDrag';
+      draw.width = 100;
+      draw.height = 100;
+      draw.setAttribute('board_id',app.test[i].board_id);
+      if (app.test[i].board_id != 1){
+        draw.style.display = 'none'
+      }
+      
+      board.appendChild(draw);
   }
 }
 
 document.getElementById('left-button').addEventListener('touchstart',function(){
+  var board = document.getElementById('draws');
   if(document.body.style.background=="url(\"/wagon.png\") center center / 100% 100% no-repeat fixed"){
+
+    for(var i=0; i<board.childNodes.length; i++){
+      if(board.childNodes[i].getAttribute('board_id') == '2'){
+        board.childNodes[i].style.display = 'block';
+      }
+      else{
+        board.childNodes[i].style.display = 'none';
+      }
+    }
+
     document.body.style.background = "url(\"/side1.png\") center center / 100% 100% no-repeat fixed";
   }
   else if(document.body.style.background == "url(\"/side2.png\") center center / 100% 100% no-repeat fixed"){
+
+    for(var i=0; i<board.childNodes.length; i++){
+      if(board.childNodes[i].getAttribute('board_id') == '1'){
+        board.childNodes[i].style.display = 'block';
+      }
+      else{
+        board.childNodes[i].style.display = 'none';
+      }
+    }
+
     document.body.style.background="url(\"/wagon.png\") center center / 100% 100% no-repeat fixed"
   }
   else{
@@ -226,12 +316,31 @@ document.getElementById('left-button').addEventListener('touchstart',function(){
 })
 
 document.getElementById('right-button').addEventListener('touchstart',function(){
-
+  var board = document.getElementById('draws');
   if(document.body.style.background=="url(\"/wagon.png\") center center / 100% 100% no-repeat fixed"){
+
+    for(var i=0; i<board.childNodes.length; i++){
+      if(board.childNodes[i].getAttribute('board_id') == '3'){
+        board.childNodes[i].style.display = 'block';
+      }
+      else{
+        board.childNodes[i].style.display = 'none';
+      }
+    }
+
     document.body.style.background = "url(\"/side2.png\") center center / 100% 100% no-repeat fixed";
   }
   else if(document.body.style.background =="url(\"/side1.png\") center center / 100% 100% no-repeat fixed"){
     document.body.style.background="url(\"/wagon.png\") center center / 100% 100% no-repeat fixed"
+
+    for(var i=0; i<board.childNodes.length; i++){
+      if(board.childNodes[i].getAttribute('board_id') == '1'){
+        board.childNodes[i].style.display = 'block';
+      }
+      else{
+        board.childNodes[i].style.display = 'none';
+      }
+    }
   }
   else{
     console.log("stay")

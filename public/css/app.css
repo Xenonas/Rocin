@@ -45,6 +45,7 @@ header{
 #add-buttons #plus-button{
     top: 80%;
     left: 88%;
+    z-index: 19;
 }
 
 #navigation-buttons button{
@@ -72,11 +73,12 @@ header{
 
 /* The Modal (background) */
 .modal {
-    display: block; /* Hidden by default */
+    display: none; /* Hidden by default */
     position: absolute; 
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
+
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
@@ -217,4 +219,12 @@ header{
 
 #clear-button{
   transform: translate(+30%, -245%);
+}
+
+#final{
+  transform: translate(+3%, -100%);
+}
+
+#clearDraws{
+  transform: translate(+3%, -100%);
 }
