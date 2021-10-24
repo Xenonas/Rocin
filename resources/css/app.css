@@ -5,13 +5,14 @@
     /* background-color: rgba(186, 226, 226, 0.829); */
 }
 
-body{
-    background: url('/wagon.png') 60%;
+/* body{
+    background: url('/wagon.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    background-size: 100% 100%;
     z-index: 2;
-}
+} */
 
 header{
     position:absolute;
@@ -169,7 +170,7 @@ header{
   background: rgba(219, 219, 219, 0.2) 
 }
 
-#drawDrag{
+.drawDrag{
   position: absolute;
 }
 
@@ -186,7 +187,20 @@ header{
   transition-duration: 0.3ms;
 }
 
-#final:active{
+#clearDraws{
+  font-size: small;
+  position: absolute;
+  top: 7%;
+  left: 1%;
+  background-color: red;
+  margin: 6px;
+  padding: 3px;
+  border: 1px solid black;
+  color: white;
+  transition-duration: 0.3ms;
+}
+
+#final:active, #clearDraws:active{
   background-color: white;
   color: black;
 }

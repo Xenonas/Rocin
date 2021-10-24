@@ -39,35 +39,38 @@ window.ontouchend = function(event) {
 }
 
 var saveBtn = document.getElementById("saveBtn");
-
+var id = 1;
+var newDraws = [];
 saveBtn.ontouchend = function(event){
   var canvas = document.getElementById("drawing-area");
   var dataURL = canvas.toDataURL("image/png");
+
+  console.log('here')
+  // console.log(canvas.toDataURL("image/png"))
   printDraw(dataURL)
   clearCanvas();
   modal.style.display = "none";
 }
 
-function printDraw(dataUrl){
+function printDraw(dataURL){
     var draw = document.createElement('img');
-    draw.src = dataUrl;
-    draw.id = 'drawDrag';
-
+    draw.src = dataURL;
+    draw.className = 'drawDrag';
+    draw.setAttribute('numid',id);
+    newDraws.push([dataURL,id])
+    id = id + 1;
     draw.addEventListener('touchmove', function(e) {
       var touchLocation = e.targetTouches[0];
-      console.log("MPHKA")
       draw.style.left = touchLocation.pageX - 80 + 'px';
-      console.log(touchLocation.pageY, draw.getBoundingClientRect().top)
       draw.style.top = touchLocation.pageY - 100 + 'px';
     })
     draw.addEventListener('touchend', function(e) {
-      console.log("BGHKA")
       var x = parseInt(draw.style.left);
       var y = parseInt(draw.style.top);
     })
 
-    draw.width = 150;
-    draw.height = 150;
+    draw.width = 100;
+    draw.height = 100;
     var board = document.getElementById('draws');
     board.appendChild(draw);
 }
@@ -175,7 +178,62 @@ const getOffsetTop = element => {
 }
 
 var final = document.getElementById('final');
-
-final.ontouchend = function (){
+var toSave = []
+final.ontouchstart = function (){
+  var imgs = document.querySelectorAll('.drawDrag');
   console.log('saved')
+  
+  for(var i = 0; i <imgs.length; i++){
+    if (imgs[i].getAttribute('numid') > 0 ){
+      toSave.push([imgs[i].src,imgs[i].style.top,imgs[i].style.left])
+    }
+  }
+  console.log(toSave)
 }
+
+var clearDraws = document.getElementById('clearDraws');
+
+clearDraws.ontouchstart = function(){
+  var board = document.getElementById('draws');
+  board.innerHTML = '';
+  loadDraws(toSave)
+}
+
+function loadDraws(draws){
+  var board = document.getElementById('draws');
+  for (var i = 0; i< draws.length; i++){
+    var draw = document.createElement('img');
+    draw.src = draws[i][0];
+    draw.style.left = draws[i][1]
+    draw.style.top = draws[i][2]
+    draw.className = 'drawDrag';
+    draw.width = 100;
+    draw.height = 100;
+    board.appendChild(draw);
+  }
+}
+
+document.getElementById('left-button').addEventListener('touchstart',function(){
+  if(document.body.style.background=="url(\"/wagon.png\") center center / 100% 100% no-repeat fixed"){
+    document.body.style.background = "url(\"/side1.png\") center center / 100% 100% no-repeat fixed";
+  }
+  else if(document.body.style.background == "url(\"/side2.png\") center center / 100% 100% no-repeat fixed"){
+    document.body.style.background="url(\"/wagon.png\") center center / 100% 100% no-repeat fixed"
+  }
+  else{
+    console.log("stay")
+  }
+})
+
+document.getElementById('right-button').addEventListener('touchstart',function(){
+
+  if(document.body.style.background=="url(\"/wagon.png\") center center / 100% 100% no-repeat fixed"){
+    document.body.style.background = "url(\"/side2.png\") center center / 100% 100% no-repeat fixed";
+  }
+  else if(document.body.style.background =="url(\"/side1.png\") center center / 100% 100% no-repeat fixed"){
+    document.body.style.background="url(\"/wagon.png\") center center / 100% 100% no-repeat fixed"
+  }
+  else{
+    console.log("stay")
+  }
+})

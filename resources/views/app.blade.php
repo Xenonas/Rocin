@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="/css/app.css">
     <title>Document</title>
 </head>
-<body id="body">
+<body id="body" style="background: url('/wagon.png') center center / 100% 100% no-repeat fixed; z-index: 2;">
     <header>
        Rocin Rails
        <span id="final">Finalize</span>
+       <span id="clearDraws">Clear</span>
     </header>
     <div id="modal">
         <!-- The Modal -->
