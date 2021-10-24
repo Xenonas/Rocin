@@ -2192,12 +2192,15 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
       var clearbtn = document.getElementById('clearDraws');
       clearbtn.style.display = 'none';
       var imgs = document.querySelectorAll('.drawDrag');
+      document.getElementsByClassName('drawDrag').classList.remove('drawDrag');
       console.log(imgs);
       console.log("okkokokok");
 
       for (var i = 0; i < imgs.length; i++) {
         if (imgs[i].getAttribute('numid') > 0) {
           if (imgs[i].style.top == '') {
+            imgs[i].setAttribute('numid', '-1');
+            imgs[i].classList.remove('drawDrag');
             toSave.push([imgs[i].getAttribute('board_id'), imgs[i].src, 0, 0]);
           } else {
             toSave.push([imgs[i].getAttribute('board_id'), imgs[i].src, imgs[i].style.top.slice(0, imgs[i].style.top.length - 2), imgs[i].style.left.slice(0, imgs[i].style.left.length - 2)]);
