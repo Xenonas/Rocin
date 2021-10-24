@@ -2150,7 +2150,7 @@ function printDraw(dataURL) {
   id = id + 1;
   draw.addEventListener('touchmove', function (e) {
     var touchLocation = e.targetTouches[0];
-    draw.style.left = touchLocation.pageX - 80 + 'px';
+    draw.style.left = touchLocation.pageX - 60 + 'px';
     draw.style.top = touchLocation.pageY - 100 + 'px';
   });
   draw.addEventListener('touchend', function (e) {

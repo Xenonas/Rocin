@@ -22,9 +22,10 @@
             {{-- <router-view></router-view> --}}
             <div id="container" class="container">
                 <canvas id="drawing-area" class="drawing-area" height="500" width="500"></canvas>
-                <button id="clear-button" class="clear-button" type="button">Clear</button>
+                <span id="clear-button" class="clear-button" type="button">Clear</span>
+                <span id="saveBtn">Save</span>
             </div>
-            <button id="saveBtn">Save</button>
+            
           </div>
         </div>
     </div>

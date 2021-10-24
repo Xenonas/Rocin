@@ -72,7 +72,7 @@ header{
 
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
+    display: block; /* Hidden by default */
     position: absolute; 
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
@@ -120,7 +120,7 @@ header{
     color: brown;
 }
 
-#saveBtn{
+/* #saveBtn{
     display: float;
     position: relative;
     left: 81%;
@@ -130,7 +130,7 @@ header{
     border: solid #0b0c10 1px;
     height: 20px;
     width: 100px;
-}
+} */
 
 
 .container {
@@ -145,21 +145,10 @@ header{
   
   .drawing-area {
     box-shadow: 0 0 6px 0 #999;
-    height: 70vh;
+    height: 75vh;
     width: 75vw;
   }
-  
-  .clear-button {
-    margin: 2em;
-    font-size: 16px;
 
-    background: #45a29e;
-    color: #0b0c10;
-    border: solid #0b0c10 1px;
-    height: 20px;
-    width: 100px;
-  }
- 
 
 #draws{
   display: float;
@@ -174,7 +163,7 @@ header{
   position: absolute;
 }
 
-#final{
+#final, #saveBtn{
   font-size: small;
   position: absolute;
   top: 7%;
@@ -187,7 +176,7 @@ header{
   transition-duration: 0.3ms;
 }
 
-#clearDraws{
+#clearDraws, #clear-button{
   font-size: small;
   position: absolute;
   top: 7%;
@@ -200,8 +189,32 @@ header{
   transition-duration: 0.3ms;
 }
 
+#clear-button, #saveBtn {
+  font-size: large;
+  font-style: italic;
+  text-align: center;
+  background: #a24545;
+  color: #ecedf0;
+  border: solid #0b0c10 1px;
+  height: 20px;
+  width: 100px;
+  z-index: 8;
+}
+
+#clear-button:active, #saveBtn:active{
+  color: #000;
+  background-color: #ee1414;
+}
+
 #final:active, #clearDraws:active{
   background-color: white;
   color: black;
 }
 
+#saveBtn{
+  transform: translate(-30%, -245%);
+}
+
+#clear-button{
+  transform: translate(+30%, -245%);
+}
