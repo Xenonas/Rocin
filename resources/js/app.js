@@ -58,7 +58,12 @@ let app = new Vue({
         if (imgs[i].getAttribute('numid') > 0 ){
           if(imgs[i].style.top == ''){
             imgs[i].setAttribute('numid','-1')
-            imgs[i].classList.remove('drawDrag');
+            try{
+              imgs[i].classList.remove('drawDrag');
+            }
+            catch{
+              console.log('')
+            }
             toSave.push([imgs[i].getAttribute('board_id'),imgs[i].src,0,0])
           }
           else{
