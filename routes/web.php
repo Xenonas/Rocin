@@ -25,7 +25,7 @@ Route::post('/save', function(Request $request){
     $output -> writeln($len);
     if($len > 0){
         for ($i = 0; $i < $len; $i++){
-            DB::insert('insert into "public.Drawings" (board_id, image, posx, posy) values (?, ?, ? ,?)', [1,$test["toSave"][$i][0],$test["toSave"][$i][1],$test["toSave"][$i][2]]);
+            DB::insert('insert into "public.Drawings" (board_id, image, posx, posy) values (?, ?, ? ,?)', [$test["toSave"][$i][0],$test["toSave"][$i][1],$test["toSave"][$i][2],$test["toSave"][$i][3]]);
         }
         return $test["toSave"][0][0];
     }

@@ -56,10 +56,10 @@ let app = new Vue({
       for(var i = 0; i <imgs.length; i++){
         if (imgs[i].getAttribute('numid') > 0 ){
           if(imgs[i].style.top == ''){
-            toSave.push([imgs[i].src,0,0])
+            toSave.push([imgs[i].getAttribute('board_id'),imgs[i].src,0,0])
           }
           else{
-            toSave.push([imgs[i].src, imgs[i].style.top.slice(0, imgs[i].style.top.length-2), imgs[i].style.left.slice(0, imgs[i].style.left.length-2)])
+            toSave.push([imgs[i].getAttribute('board_id'),imgs[i].src, imgs[i].style.top.slice(0, imgs[i].style.top.length-2), imgs[i].style.left.slice(0, imgs[i].style.left.length-2)])
           }
         }
       }
@@ -107,6 +107,18 @@ function printDraw(dataURL){
     var draw = document.createElement('img');
     draw.src = dataURL;
     draw.className = 'drawDrag';
+
+    if(document.body.style.background=="url(\"/wagon.png\") center center / 100% 100% no-repeat fixed"){
+      draw.setAttribute('board_id',1)
+
+    }
+    else if(document.body.style.background=="url(\"/side2.png\") center center / 100% 100% no-repeat fixed"){
+      draw.setAttribute('board_id',3)
+    }
+    else{
+      draw.setAttribute('board_id',3)
+    }
+
     draw.setAttribute('numid',id);
     newDraws.push([dataURL,id])
     id = id + 1;
