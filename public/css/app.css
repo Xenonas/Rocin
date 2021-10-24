@@ -1,1 +1,230 @@
-*{border:0;margin:0;padding:0}header{background-color:#d9a203;border-bottom:3px solid #000;display:block;font-family:Lucida Sans,Lucida Sans Regular,Lucida Grande,Lucida Sans Unicode,Geneva,Verdana,sans-serif;font-size:8vh;height:10vh;max-height:20%;position:absolute;text-align:center;top:0;width:100%}#add-buttons button{background:orange;border:1px solid #000;border-radius:50% 50% 50% 50%;color:#000;font-size:xx-large;height:8.5vw;left:80%;position:absolute;top:80%;width:8.5vw;z-index:10}#add-buttons #plus-button{left:88%;top:80%;z-index:19}#navigation-buttons button{background:gray;border-radius:50% 50% 50% 50%;color:#000;font-size:xx-large;height:9.5vw;opacity:.75;position:absolute;top:40%;width:100%;width:9.5vw;z-index:11}#right-button{right:3.5%}#left-button{left:3.5%}.modal{background-color:#000;background-color:rgba(0,0,0,.4);display:none;height:100%;left:0;overflow:auto;padding-top:100px;position:absolute;top:0;width:100%;z-index:1;z-index:20}.modal-content{background-color:#fefefe;border:2px solid #000;height:60%;left:10%;margin:auto;position:absolute;top:10%;width:80%}.close{color:#aaa;float:right;font-size:28px;font-weight:700}.close:focus,.close:hover{color:#000;cursor:pointer;text-decoration:none}#response{color:brown;position:absolute}.container{align-items:center;display:flex;flex-direction:column;justify-content:center;max-height:500px;z-index:100}.drawing-area{box-shadow:0 0 6px 0 #999;height:75vh;width:75vw}#draws{background:hsla(0,0%,86%,.2);display:float;height:85%;top:12%;width:100%}#draws,.drawDrag{position:absolute}#final,#saveBtn{right:1%}#clear-button,#clearDraws,#final,#saveBtn{background-color:red;border:1px solid #000;color:#fff;font-size:small;margin:6px;padding:3px;position:absolute;top:7%;transition-duration:.3ms}#clear-button,#clearDraws{left:1%}#clear-button,#saveBtn{background:#a24545;border:1px solid #0b0c10;color:#ecedf0;font-size:large;font-style:italic;height:20px;text-align:center;width:100px;z-index:8}#clear-button:active,#saveBtn:active{background-color:#ee1414;color:#000}#clearDraws:active,#final:active{background-color:#fff;color:#000}#saveBtn{transform:translate(-30%,-245%)}#clear-button{transform:translate(30%,-245%)}#clearDraws,#final{transform:translate(3%,-100%)}
+*{
+    padding: 0;
+    border: 0;
+    margin: 0;
+    /* background-color: rgba(186, 226, 226, 0.829); */
+}
+
+/* body{
+    background: url('/wagon.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 100% 100%;
+    z-index: 2;
+} */
+
+header{
+    position:absolute;
+    display: block;
+    top: 0%;
+    width: 100%;
+    height: 10vh;
+    max-height: 20%;
+    background-color: #d9a203;
+    text-align: center;
+    font-size: 8vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border-bottom: black 3px solid;
+}
+
+#add-buttons button{
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    height: 8.5vw;
+    width: 8.5vw;
+    border-radius: 50% 50% 50% 50%;
+    border: black 1px solid;
+    background: orange;
+    z-index: 10;
+    color: black;
+    font-size: xx-large;
+}
+
+#add-buttons #plus-button{
+    top: 80%;
+    left: 88%;
+    z-index: 19;
+}
+
+#navigation-buttons button{
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    height: 9.5vw;
+    width: 9.5vw;
+    border-radius: 50% 50% 50% 50%;
+    background: gray;
+    z-index: 11;
+    color: black;
+    font-size: xx-large;
+    opacity: 0.75;
+}
+
+
+#right-button{
+    right: 3.5%;
+}
+
+#left-button{
+    left: 3.5%;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: absolute; 
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    z-index: 20;
+}
+  
+  /* Modal Content */
+  .modal-content {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    background-color: #fefefe;
+    margin: auto;
+    border: 2px solid black;
+    width: 80%;
+    height: 60%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+
+
+#response{
+    position: absolute;
+    color: brown;
+}
+
+/* #saveBtn{
+    display: float;
+    position: relative;
+    left: 81%;
+    top:-20%;
+    background: #45a29e;
+    color: #0b0c10;
+    border: solid #0b0c10 1px;
+    height: 20px;
+    width: 100px;
+} */
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 70vh; */
+    max-height: 500px;
+    z-index: 100;
+  }
+  
+  .drawing-area {
+    box-shadow: 0 0 6px 0 #999;
+    height: 75vh;
+    width: 75vw;
+  }
+
+
+#draws{
+  display: float;
+  position: absolute;
+  top: 12%;
+  width: 100%;
+  height: 85%;
+  background: rgba(219, 219, 219, 0.2) 
+}
+
+.drawDrag{
+  position: absolute;
+}
+
+#final, #saveBtn{
+  font-size: small;
+  position: absolute;
+  top: 7%;
+  right: 1%;
+  background-color: red;
+  margin: 6px;
+  padding: 3px;
+  border: 1px solid black;
+  color: white;
+  transition-duration: 0.3ms;
+}
+
+#clearDraws, #clear-button{
+  font-size: small;
+  position: absolute;
+  top: 7%;
+  left: 1%;
+  background-color: red;
+  margin: 6px;
+  padding: 3px;
+  border: 1px solid black;
+  color: white;
+  transition-duration: 0.3ms;
+}
+
+#clear-button, #saveBtn {
+  font-size: large;
+  font-style: italic;
+  text-align: center;
+  background: #a24545;
+  color: #ecedf0;
+  border: solid #0b0c10 1px;
+  height: 20px;
+  width: 100px;
+  z-index: 8;
+}
+
+#clear-button:active, #saveBtn:active{
+  color: #000;
+  background-color: #ee1414;
+}
+
+#final:active, #clearDraws:active{
+  background-color: white;
+  color: black;
+}
+
+#saveBtn{
+  transform: translate(-30%, -245%);
+}
+
+#clear-button{
+  transform: translate(+30%, -245%);
+}
+
+#final{
+  transform: translate(+3%, -100%);
+}
+
+#clearDraws{
+  transform: translate(+3%, -100%);
+}
