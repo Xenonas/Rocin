@@ -16,6 +16,7 @@
         "laravel-mix": "^6.0.6",
         "laravel-mix-serve": "^2.2.2",
         "lodash": "^4.17.19",
+        "nginx": "^1.0.3",
         "postcss": "^8.1.14",
         "three": "^0.133.1",
         "url-loader": "^4.1.1",
