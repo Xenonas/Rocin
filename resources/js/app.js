@@ -51,7 +51,12 @@ let app = new Vue({
       var clearbtn = document.getElementById('clearDraws');
       clearbtn.style.display = 'none';
       var imgs = document.querySelectorAll('.drawDrag');
-      document.getElementsByClassName('drawDrag').classList.remove('drawDrag');
+      try{
+        document.getElementsByClassName('drawDrag').classList.remove('drawDrag');
+      }
+      catch{
+        console.log('')
+      }
       console.log(imgs)
       console.log("okkokokok")
       for(var i = 0; i <imgs.length; i++){

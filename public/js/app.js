@@ -2192,7 +2192,13 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
       var clearbtn = document.getElementById('clearDraws');
       clearbtn.style.display = 'none';
       var imgs = document.querySelectorAll('.drawDrag');
-      document.getElementsByClassName('drawDrag').classList.remove('drawDrag');
+
+      try {
+        document.getElementsByClassName('drawDrag').classList.remove('drawDrag');
+      } catch (_unused) {
+        console.log('');
+      }
+
       console.log(imgs);
       console.log("okkokokok");
 
@@ -2203,7 +2209,7 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_5__["default"]({
 
             try {
               imgs[i].classList.remove('drawDrag');
-            } catch (_unused) {
+            } catch (_unused2) {
               console.log('');
             }
 
